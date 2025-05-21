@@ -1,118 +1,111 @@
-# ✅IoT Embedded Device REST API – Remote Monitoring & Control System
+# ✅ IoT Embedded Device REST API – Remote Monitoring & Control System
 
-a complete IoT Device REST API Project with optional iOS/web clients 
+A complete, modular, and testable IoT Device REST API project using Flask, Python OOP, and simulated sensors — with optional web/iOS client integration.
+
+---
 
 ## 📁 Project Structure
 
-iot_device_project/
-├── README.md
-├── device/
-│   ├── rest_api.py         # Flask REST API for the IoT device
-│   ├── sensor.py           # (Simulated) sensor reading logic
-│   ├── device.py
-│   ├── device_mode.py
-│   └── requirements.txt    # Python dependencies
-├── mobile_client_ios/
-│   └── SwiftUI_Client/     # Optional iOS app (Xcode project)
-├── web_dashboard/
-│   ├── index.html          # Web client with Axios to call API
-│   └── app.js
-├── test/
-│   └── api_test.py        # Python script to test all API endpoints
+```
+IoT-Embedded-Device-REST-API/
+├── README.md                    # Project documentation
+├── device/                      # Core device logic and API server
+│   ├── rest_api.py              # Flask REST API
+│   ├── sensor.py                # Simulated sensor readings
+│   ├── device.py                # OOP class to manage device state
+│   ├── device_mode.py           # Enum for device modes
+│   └── requirements.txt         # Python dependencies
+├── web_dashboard/               # Simple front-end dashboard
+│   ├── index.html               # HTML UI for dashboard
+│   └── app.js                   # JavaScript fetch API calls
+├── test/                        # API test scripts
+│   └── api_test.py              # Script to test endpoints
+```
 
-- `device/rest_api.py`: Flask API using a `Device` class
-- `device/device.py`: Main OOP class encapsulating all device behavior
-- `device/device_mode.py`: Enum for device operation modes
-- `device/sensor.py`: Simulated sensor readings
-- `test/api_test.py`: Test suite for API endpoints
-- `web_dashboard/`: Simple web UI
-
-
-
-
+---
 
 ## 🔧 Key Features
 
 | Feature         | Description                              |
 | --------------- | ---------------------------------------- |
 | `/temperature`  | Read current temperature from the device |
+| `/humidity`     | Read current humidity from the device    |
 | `/status`       | View device status                       |
-| `/restart`      | Remotely restart the device              |
-| `/set-interval` | Configure reading interval               |
-| Web client      | Control/monitor from browser             |
-| iOS client      | Native Swift app (optional)              |
-| Python testing  | Script to validate API endpoints         |
+| `/uptime`       | View device uptime                       |
+| `/mode` (GET)   | Get current device mode                  |
+| `/mode` (POST)  | Change device mode using enums           |
+| `/set-interval` | Configure sensor read interval           |
+| `/restart`      | Simulate device restart                  |
+| Web Dashboard   | Display real-time sensor data in browser |
+| API Testing     | Automated Python testing using requests  |
+
+---
 
 ## 🧠 Technologies Used
 
-* Embedded Linux (Raspberry Pi / similar)
+- Python 3
+- Flask
+- RESTful API Design
+- Object-Oriented Programming
+- Enums for state management
+- HTML, JavaScript (Fetch API)
+- curl / Postman for API testing
 
-* Python 3
+---
 
-* Flask
+## 🚀 Getting Started
 
-* Bash scripts / system calls
-
-* Swift / SwiftUI (optional)
-
-* HTML/CSS/JS with Axios
-
-* curl / Postman for API testing
-
-
-# IoT Device REST API
-
-A simulated REST API for an embedded Linux IoT device using Flask.
-
-## Features
-- Read temperature & humidity from simulated sensors
-- Monitor uptime and current device mode
-- Restart device and change device mode using enums
-- Set read interval dynamically
-- Simple web dashboard with temperature and humidity display
-- Ready for mobile/web integration or IoT expansion
-
-## Run the Server
+### 1. Run the Server
 ```bash
 cd device
 pip install -r requirements.txt
 python rest_api.py
 ```
 
-## Test APIs
+### 2. Test APIs with Python
 ```bash
 python test/api_test.py
 ```
 
-## Web Dashboard
-Open `web_dashboard/index.html` in your browser.
+### 3. Open the Web Dashboard
+Just open the file in your browser:
+```bash
+web_dashboard/index.html
+```
 
 ---
 
-You can now upload this folder structure to GitHub with commit messages like:
+## 📦 Enum Device Modes
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: IoT device REST API"
-git remote add origin https://github.com/yourusername/iot-device-rest-api.git
-git push -u origin main
-
-## Enum Device Modes
-Supported modes via POST `/mode`:
+Supported values for the `/mode` endpoint:
 - `normal`
 - `maintenance`
 - `restarting`
 
+Example:
 ```bash
-curl -X POST http://localhost:5000/mode -H "Content-Type: application/json" -d '{"mode": "maintenance"}'
+curl -X POST http://localhost:5000/mode \
+     -H "Content-Type: application/json" \
+     -d '{"mode": "maintenance"}'
+```
 
-## License
+---
+
+## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contributing
+---
+
+## 🤝 Contributing
 Contributions are welcome! To contribute:
 - Fork the repository
-- Create a new branch
-- Make your changes
+- Create a new branch (`git checkout -b feature/my-feature`)
+- Commit your changes (`git commit -am 'Add some feature'`)
+- Push to the branch (`git push origin feature/my-feature`)
 - Submit a pull request
+
+For major changes, please open an issue first to discuss what you'd like to change.
+
+---
+
+Created with ❤️ by Oran Gabai
